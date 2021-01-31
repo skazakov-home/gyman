@@ -94,5 +94,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gyman.BusinessLogicLayer\Gyman.BusinessLogicLayer.csproj">
+      <Project>{87d6f731-8691-4c7a-bfb9-d77627e4dc55}</Project>
+      <Name>Gyman.BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Gyman.DataAccessLayer\Gyman.DataAccessLayer.csproj">
+      <Project>{e4872a45-0e1f-4566-8d86-9b7cc02204a2}</Project>
+      <Name>Gyman.DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

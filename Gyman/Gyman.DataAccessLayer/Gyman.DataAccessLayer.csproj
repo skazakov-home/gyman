@@ -43,5 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Gyman.BusinessLogicLayer\Gyman.BusinessLogicLayer.csproj">
+      <Project>{87d6f731-8691-4c7a-bfb9-d77627e4dc55}</Project>
+      <Name>Gyman.BusinessLogicLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
