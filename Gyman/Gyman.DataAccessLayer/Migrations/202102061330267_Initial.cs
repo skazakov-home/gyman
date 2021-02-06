@@ -19,7 +19,6 @@
                         Age = c.Int(nullable: false),
                         Weight = c.Double(nullable: false),
                         Height = c.Double(nullable: false),
-                        HasSubscription = c.Boolean(nullable: false),
                         SubscriptionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -32,8 +31,7 @@
                     {
                         Id = c.Int(nullable: false, identity: true),
                         Cost = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Start = c.DateTime(nullable: false),
-                        End = c.DateTime(nullable: false),
+                        NumberOfDays = c.Int(nullable: false),
                         SubscriptionType = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
