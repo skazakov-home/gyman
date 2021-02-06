@@ -106,6 +106,7 @@
     <Compile Include="Views\Services\IDialogMessageService.cs" />
     <Compile Include="Wrappers\ModelWrapper.cs" />
     <Compile Include="Wrappers\NotifyDataErrorInfoBase.cs" />
+    <Compile Include="Wrappers\TrainerWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
