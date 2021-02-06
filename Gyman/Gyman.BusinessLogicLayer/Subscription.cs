@@ -20,11 +20,7 @@ namespace Gyman.BusinessLogicLayer
         [Required]
         public decimal Cost { get; set; }
 
-        [Required]
-        public DateTime Start { get; set; }
-
-        [Required]
-        public DateTime End { get; set; }
+        public int NumberOfDays { get; set; }
 
         [Required]
         public SubscriptionType SubscriptionType { get; set; }

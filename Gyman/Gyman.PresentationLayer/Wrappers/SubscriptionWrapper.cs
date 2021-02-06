@@ -17,15 +17,9 @@ namespace Gyman.PresentationLayer.Wrappers
             set => SetValue(value);
         }
 
-        public DateTime Start
+        public int NumberOfDays
         {
-            get => GetValue<DateTime>();
-            set => SetValue(value);
-        }
-
-        public DateTime End
-        {
-            get => GetValue<DateTime>();
+            get => GetValue<int>();
             set => SetValue(value);
         }
 

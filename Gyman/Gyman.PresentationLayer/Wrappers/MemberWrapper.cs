@@ -11,6 +11,8 @@ namespace Gyman.PresentationLayer.Wrappers
 
         public int Id => Model.Id;
 
+        public bool HasSubscription => Model.Subscription != null;
+
         public string Name
         {
             get => GetValue<string>();
@@ -50,12 +52,6 @@ namespace Gyman.PresentationLayer.Wrappers
         public double Height
         {
             get => GetValue<double>();
-            set => SetValue(value);
-        }
-
-        public bool HasSubscription
-        {
-            get => GetValue<bool>();
             set => SetValue(value);
         }
 

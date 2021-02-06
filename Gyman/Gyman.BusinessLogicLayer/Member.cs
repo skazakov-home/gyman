@@ -31,9 +31,7 @@ namespace Gyman.BusinessLogicLayer
         [Required]
         public double Height { get; set; }
 
-        public bool HasSubscription { get; set; }
-
-        public int SubscriptionId { get; set; }
+        public int? SubscriptionId { get; set; }
 
         public Subscription Subscription { get; set; }
     }
