@@ -107,6 +107,7 @@
     <Compile Include="Wrappers\ModelWrapper.cs" />
     <Compile Include="Wrappers\NotifyDataErrorInfoBase.cs" />
     <Compile Include="Wrappers\TrainerWrapper.cs" />
+    <Compile Include="Wrappers\TrainingWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
