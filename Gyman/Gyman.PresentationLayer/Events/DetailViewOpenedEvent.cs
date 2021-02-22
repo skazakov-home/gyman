@@ -2,7 +2,7 @@
 
 namespace Gyman.PresentationLayer.Events
 {
-    public class OpenDetailViewEvent : PubSubEvent<OpenDetailViewEventArgs>
+    public class DetailViewOpenedEvent : PubSubEvent<DetailViewOpenedEventArgs>
     {
     }
 }
