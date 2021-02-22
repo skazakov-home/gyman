@@ -2,9 +2,11 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Autofac.Features.Indexed;
 using Gyman.PresentationLayer.Events;
 using Gyman.PresentationLayer.Views.Services;
+using Prism.Commands;
 using Prism.Events;
 
 namespace Gyman.PresentationLayer.ViewModels
@@ -15,6 +17,7 @@ namespace Gyman.PresentationLayer.ViewModels
         private readonly IDialogMessageService dialogMessageService;
         private readonly IIndex<string, IDetailViewModel> detailViewModelCreator;
         private IDetailViewModel selectedDetailViewModel;
+        private int newDetailViewId = 0;
 
         public MainViewModel(
             IEventAggregator eventAggregator,
@@ -29,6 +32,7 @@ namespace Gyman.PresentationLayer.ViewModels
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
             SubscribeEvents();
+            RegisterCommands();
         }
 
         public INavigationViewModel NavigationViewModel { get; }
@@ -44,6 +48,8 @@ namespace Gyman.PresentationLayer.ViewModels
                 OnPropertyChanged();
             }
         }
+
+        public ICommand CreateNewDetailViewCommand { get; private set; }
 
         public async Task LoadAsync()
         {
@@ -80,6 +86,21 @@ namespace Gyman.PresentationLayer.ViewModels
         private void OnDetailViewClosed(DetailViewClosedEventArgs args)
         {
             RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
+
+        private void RegisterCommands()
+        {
+            CreateNewDetailViewCommand = new DelegateCommand<Type>(OnCreateNewDetailView);
+        }
+
+        private void OnCreateNewDetailView(Type viewModelType)
+        {
+            OnDetailViewOpened(
+                new DetailViewOpenedEventArgs
+                {
+                    Id = newDetailViewId--,
+                    ViewModelName = viewModelType.Name
+                });
         }
 
         private void RemoveDetailViewModel(int id, string viewModelName)

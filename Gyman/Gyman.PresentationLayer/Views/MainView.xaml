@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
+        xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels"
         mc:Ignorable="d"
         Title="Gyman"
         WindowStartupLocation="CenterScreen"
@@ -16,16 +17,28 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
 
-        <v:NavigationView Grid.Column="0"
+        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+            <MenuItem Header="Add">
+                <MenuItem Header="New Member"
+                          Command="{Binding CreateNewDetailViewCommand}"
+                          CommandParameter="{x:Type vm:MemberDetailViewModel}"/>
+            </MenuItem>
+        </Menu>
+
+        <v:NavigationView Grid.Column="0" Grid.Row="1"
                           DataContext="{Binding NavigationViewModel}"/>
 
-        <GridSplitter Grid.Column="1"
+        <GridSplitter Grid.Column="1" Grid.Row="1"
                       Width="3"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Stretch" />
 
-        <TabControl Grid.Column="2"
+        <TabControl Grid.Column="2" Grid.Row="1"
                     ItemsSource="{Binding DetailViewModels}"
                     SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}"
                     ItemTemplate="{StaticResource DetailViewItemTemplate}"/>
