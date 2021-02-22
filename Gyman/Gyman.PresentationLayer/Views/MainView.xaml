@@ -3,14 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Gyman.PresentationLayer.Views"
+        xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
         mc:Ignorable="d"
         Title="Gyman"
         WindowStartupLocation="CenterScreen"
         MinHeight="768"
         MinWidth="1248"
         SnapsToDevicePixels="True">
-    <Grid>
-        <TextBlock Text="Hello, World!"/>
+    <Grid Margin="2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <v:NavigationView Grid.Column="0"
+                          DataContext="{Binding NavigationViewModel}"/>
+
+        <GridSplitter Grid.Column="1"
+                      Width="3"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Stretch" />
+
+        <TabControl Grid.Column="2"
+                    ItemsSource="{Binding DetailViewModels}"
+                    SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}"
+                    ItemTemplate="{StaticResource DetailViewItemTemplate}"/>
     </Grid>
 </Window>

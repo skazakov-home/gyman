@@ -99,11 +99,25 @@
     </Compile>
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
-    <Compile Include="Events\OpenDetailViewEvent.cs" />
-    <Compile Include="Events\OpenDetailViewEventArgs.cs" />
+    <Compile Include="Data\Repositories\IMemberRepository.cs" />
+    <Compile Include="Data\Repositories\MemberRepository.cs" />
+    <Compile Include="Data\Services\IMemberLookupDataService.cs" />
+    <Compile Include="Data\Services\LookupDataService.cs" />
+    <Compile Include="Events\DetailViewClosedEvent.cs" />
+    <Compile Include="Events\DetailViewClosedEventArgs.cs" />
+    <Compile Include="Events\DetailViewDeletedEvent.cs" />
+    <Compile Include="Events\DetailViewDeletedEventArgs.cs" />
+    <Compile Include="Events\DetailViewOpenedEvent.cs" />
+    <Compile Include="Events\DetailViewOpenedEventArgs.cs" />
+    <Compile Include="Events\DetailViewSavedEvent.cs" />
+    <Compile Include="Events\DetailViewSavedEventArgs.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModels\DetailViewModelBase.cs" />
+    <Compile Include="ViewModels\IDetailViewModel.cs" />
+    <Compile Include="ViewModels\IMemberDetailViewModel.cs" />
     <Compile Include="ViewModels\INavigationViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\MemberDetailViewModel.cs" />
     <Compile Include="ViewModels\NavigationItemViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

@@ -26,9 +26,9 @@ namespace Gyman.PresentationLayer.Views
             Loaded += OnMainViewLoaded;
         }
 
-        private void OnMainViewLoaded(object sender, RoutedEventArgs e)
+        private async void OnMainViewLoaded(object sender, RoutedEventArgs e)
         {
-            // TODO: Load ViewModel
+            await mainViewModel.LoadAsync();
         }
     }
 }

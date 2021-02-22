@@ -41,8 +41,8 @@ namespace Gyman.PresentationLayer.ViewModels
 
         private void OnOpenDetailView()
         {
-            eventAggregator.GetEvent<OpenDetailViewEvent>().Publish(
-                new OpenDetailViewEventArgs
+            eventAggregator.GetEvent<DetailViewOpenedEvent>().Publish(
+                new DetailViewOpenedEventArgs
                 {
                     Id = Id,
                     ViewModelName = DetailViewModelName
