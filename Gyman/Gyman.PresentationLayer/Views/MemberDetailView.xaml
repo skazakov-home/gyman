@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="Gyman.PresentationLayer.Views.MemberDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0"
+               Content="Name"/>
+        <TextBox Grid.Column="0" Grid.Row="1"
+                 Text="{Binding Member.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="1" Grid.Row="0"
+               Content="Surname"/>
+        <TextBox Grid.Column="1" Grid.Row="1"
+                 Text="{Binding Member.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="2"
+               Content="Height"/>
+        <TextBox Grid.Column="0" Grid.Row="3"
+                 Text="{Binding Member.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="1" Grid.Row="2"
+               Content="Weight"/>
+        <TextBox Grid.Column="1" Grid.Row="3"
+                 Text="{Binding Member.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="4"
+               Content="Email"/>
+        <TextBox Grid.Column="0" Grid.Row="5"
+                 Text="{Binding Member.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="1" Grid.Row="4"
+               Content="Phone"/>
+        <TextBox Grid.Column="1" Grid.Row="5"
+                 Text="{Binding Member.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+    </Grid>
+</UserControl>
