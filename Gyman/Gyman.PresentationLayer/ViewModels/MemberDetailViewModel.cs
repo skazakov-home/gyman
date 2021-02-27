@@ -1,10 +1,9 @@
-﻿using System;
+﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Data.Entity.Infrastructure;
-using System.Linq;
 using System.Threading.Tasks;
 using Gyman.BusinessLogicLayer;
 using Gyman.PresentationLayer.Data.Repositories;
+using Gyman.PresentationLayer.Data.Services;
 using Gyman.PresentationLayer.Views.Services;
 using Gyman.PresentationLayer.Wrappers;
 using Prism.Commands;
@@ -15,16 +14,24 @@ namespace Gyman.PresentationLayer.ViewModels
     public class MemberDetailViewModel : DetailViewModelBase, IMemberDetailViewModel
     {
         private readonly IMemberRepository memberRepository;
+        private readonly ISubscriptionLookupDataService subscriptionLookupDataService;
+
         private MemberWrapper member;
 
         public MemberDetailViewModel(
             IEventAggregator eventAggregator,
             IDialogMessageService dialogMessageService,
-            IMemberRepository memberRepository)
+            IMemberRepository memberRepository,
+            ISubscriptionLookupDataService subscriptionLookupDataService)
             : base(eventAggregator, dialogMessageService)
         {
             this.memberRepository = memberRepository;
+            this.subscriptionLookupDataService = subscriptionLookupDataService;
+
+            Subscriptions = new ObservableCollection<LookupItem>();
         }
+
+        public ObservableCollection<LookupItem> Subscriptions { get; }
 
         public MemberWrapper Member
         {
@@ -44,6 +51,7 @@ namespace Gyman.PresentationLayer.ViewModels
 
             Id = memberId;
             WrapMember(member);
+            await LoadSubscriptionLookupItemsAsync();
         }
 
         protected override bool CanSave()
@@ -81,47 +89,6 @@ namespace Gyman.PresentationLayer.ViewModels
             }
         }
 
-        protected async Task SaveWithOptimisticConcurrencyAsync(
-            Func<Task> saveFunc, Action afterSaveAction)
-        {
-            try
-            {
-                await saveFunc();
-            }
-            catch (DbUpdateConcurrencyException e)
-            {
-                var databaseValues = e.Entries.Single().GetDatabaseValues();
-
-                if (databaseValues == null)
-                {
-                    dialogMessageService.ShowInfoDialog(
-                        "The entity has been deleted by another user.");
-                    RaiseDetailViewDeletedEvent(Id);
-
-                    return;
-                }
-
-                var result = dialogMessageService.ShowOkCancelDialog(
-                    "The entity has been changed in the mean time by someone else. " +
-                    "Click OK to save you changes anyway, click Cancel to reload " +
-                    "the entity from the database.", "Question");
-
-                if (result == DialogMessageResult.OK)
-                {
-                    var entry = e.Entries.Single();
-                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
-                    await saveFunc();
-                }
-                else
-                {
-                    await e.Entries.Single().ReloadAsync();
-                    await LoadAsync(Id);
-                }
-            }
-
-            afterSaveAction();
-        }
-
         private Member CreateNewMember()
         {
             var member = new Member();
@@ -140,9 +107,21 @@ namespace Gyman.PresentationLayer.ViewModels
             SetTitle();
         }
 
+        private async Task LoadSubscriptionLookupItemsAsync()
+        {
+            Subscriptions.Clear();
+            Subscriptions.Add(new NullLookupItem { DisplayMember = "" });
+            var lookupItems = await subscriptionLookupDataService.LoadSubscriptionLookupItemsAsync();
+
+            foreach (var item in lookupItems)
+            {
+                Subscriptions.Add(item);
+            }
+        }
+
         private void OnMemberPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (HasChanges)
+            if (!HasChanges)
             {
                 HasChanges = memberRepository.HasChanges();
             }

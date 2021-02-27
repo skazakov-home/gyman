@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Data.Entity.Infrastructure;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Gyman.PresentationLayer.Events;
 using Gyman.PresentationLayer.Views.Services;
@@ -30,6 +33,7 @@ namespace Gyman.PresentationLayer.ViewModels
             {
                 hasChanges = value;
                 OnPropertyChanged();
+                ((DelegateCommand)SaveCommand).RaiseCanExecuteChanged();
             }
         }
 
@@ -104,6 +108,46 @@ namespace Gyman.PresentationLayer.ViewModels
                     DisplayMember = displayMember,
                     ViewModelName = GetType().Name
                 });
+        }
+
+        protected async Task SaveWithOptimisticConcurrencyAsync(Func<Task> saveFunc, Action afterSaveAction)
+        {
+            try
+            {
+                await saveFunc();
+            }
+            catch (DbUpdateConcurrencyException e)
+            {
+                var databaseValues = e.Entries.Single().GetDatabaseValues();
+
+                if (databaseValues == null)
+                {
+                    dialogMessageService.ShowInfoDialog(
+                        "The entity has been deleted by another user.");
+                    RaiseDetailViewDeletedEvent(Id);
+
+                    return;
+                }
+
+                var result = dialogMessageService.ShowOkCancelDialog(
+                    "The entity has been changed in the mean time by someone else. " +
+                    "Click OK to save you changes anyway, click Cancel to reload " +
+                    "the entity from the database.", "Question");
+
+                if (result == DialogMessageResult.OK)
+                {
+                    var entry = e.Entries.Single();
+                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                    await saveFunc();
+                }
+                else
+                {
+                    await e.Entries.Single().ReloadAsync();
+                    await LoadAsync(Id);
+                }
+            }
+
+            afterSaveAction();
         }
     }
 }
