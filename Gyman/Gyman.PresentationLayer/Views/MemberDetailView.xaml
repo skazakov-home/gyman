@@ -15,8 +15,8 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
             <RowDefinition />
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Column="0" Grid.Row="0"
@@ -40,13 +40,33 @@
                  Text="{Binding Member.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="0" Grid.Row="4"
-               Content="Email"/>
+               Content="Age"/>
         <TextBox Grid.Column="0" Grid.Row="5"
-                 Text="{Binding Member.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                 Text="{Binding Member.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Column="1" Grid.Row="4"
+               Content="Subscription"/>
+        <ComboBox Grid.Column="1" Grid.Row="5"
+                  ItemsSource="{Binding Subscriptions}"
+                  DisplayMemberPath="DisplayMember"
+                  SelectedValuePath="Id"
+                  SelectedValue="{Binding Member.SubscriptionId, Mode=TwoWay}"/>
+
+        <Label Grid.Column="0" Grid.Row="6"
+               Content="Email"/>
+        <TextBox Grid.Column="0" Grid.Row="7"
+                 Text="{Binding Member.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="1" Grid.Row="6"
                Content="Phone"/>
-        <TextBox Grid.Column="1" Grid.Row="5"
+        <TextBox Grid.Column="1" Grid.Row="7"
                  Text="{Binding Member.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <StackPanel Grid.Column="1" Grid.Row="9"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Button Content="Save" Command="{Binding SaveCommand}"/>
+            <Button Content="Delete" Command="{Binding DeleteCommand}"/>
+        </StackPanel>
     </Grid>
 </UserControl>

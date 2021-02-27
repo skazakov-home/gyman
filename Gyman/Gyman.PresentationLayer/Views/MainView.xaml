@@ -24,9 +24,12 @@
 
         <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
             <MenuItem Header="Add">
-                <MenuItem Header="New Member"
+                <MenuItem Header="Member"
                           Command="{Binding CreateNewDetailViewCommand}"
                           CommandParameter="{x:Type vm:MemberDetailViewModel}"/>
+                <MenuItem Header="Trainer"
+                          Command="{Binding CreateNewDetailViewCommand}"
+                          CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
             </MenuItem>
         </Menu>
 
