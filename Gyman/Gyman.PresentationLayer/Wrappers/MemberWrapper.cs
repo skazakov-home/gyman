@@ -55,9 +55,9 @@ namespace Gyman.PresentationLayer.Wrappers
             set => SetValue(value);
         }
 
-        public int SubscriptionId
+        public int? SubscriptionId
         {
-            get => GetValue<int>();
+            get => GetValue<int?>();
             set => SetValue(value);
         }
 
