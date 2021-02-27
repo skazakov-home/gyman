@@ -11,6 +11,11 @@
             <v:MemberDetailView/>
         </DataTemplate>
 
+        <!-- Trainer Detail View Template -->
+        <DataTemplate DataType="{x:Type vm:TrainerDetailViewModel}">
+            <v:TrainerDetailView/>
+        </DataTemplate>
+
         <!-- TextBox Error Style -->
         <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
             <Setter Property="FontSize" Value="16"/>
