@@ -19,10 +19,12 @@ namespace Gyman.PresentationLayer.Startup
             builder.RegisterType<MainViewModel>().AsSelf();
             builder.RegisterType<NavigationViewModel>().As<INavigationViewModel>();
             builder.RegisterType<MemberDetailViewModel>().Keyed<IDetailViewModel>(nameof(MemberDetailViewModel));
+            builder.RegisterType<TrainerDetailViewModel>().Keyed<IDetailViewModel>(nameof(TrainerDetailViewModel));
             builder.RegisterType<GymanDbContext>().AsSelf();
             builder.RegisterType<DialogMessageService>().As<IDialogMessageService>();
             builder.RegisterType<LookupDataService>().AsImplementedInterfaces();
             builder.RegisterType<MemberRepository>().As<IMemberRepository>();
+            builder.RegisterType<TrainerRepository>().As<ITrainerRepository>();
             builder.RegisterType<EventAggregator>().As<IEventAggregator>().SingleInstance();
 
             return builder.Build();
