@@ -62,6 +62,8 @@ namespace Gyman.PresentationLayer.ViewModels
                 .Subscribe(OnDetailViewOpened);
             eventAggregator.GetEvent<DetailViewClosedEvent>()
                 .Subscribe(OnDetailViewClosed);
+            eventAggregator.GetEvent<DetailViewDeletedEvent>()
+                .Subscribe(OnDetailViewDeleted);
         }
 
         private async void OnDetailViewOpened(DetailViewOpenedEventArgs args)
@@ -84,6 +86,11 @@ namespace Gyman.PresentationLayer.ViewModels
         }
 
         private void OnDetailViewClosed(DetailViewClosedEventArgs args)
+        {
+            RemoveDetailViewModel(args.Id, args.ViewModelName);
+        }
+
+        private void OnDetailViewDeleted(DetailViewDeletedEventArgs args)
         {
             RemoveDetailViewModel(args.Id, args.ViewModelName);
         }

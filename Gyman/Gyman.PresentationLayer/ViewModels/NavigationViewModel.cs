@@ -1,6 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using Gyman.PresentationLayer.Data.Services;
+using Gyman.PresentationLayer.Events;
 using Prism.Events;
 
 namespace Gyman.PresentationLayer.ViewModels
@@ -22,6 +25,8 @@ namespace Gyman.PresentationLayer.ViewModels
 
             Members = new ObservableCollection<NavigationItemViewModel>();
             Trainers = new ObservableCollection<NavigationItemViewModel>();
+
+            SubscribeEvents();
         }
 
         public ObservableCollection<NavigationItemViewModel> Members { get; }
@@ -65,6 +70,65 @@ namespace Gyman.PresentationLayer.ViewModels
                     trainer.Id,
                     trainer.DisplayMember,
                     nameof(TrainerDetailViewModel)));
+            }
+        }
+
+        private void SubscribeEvents()
+        {
+            eventAggregator.GetEvent<DetailViewSavedEvent>().Subscribe(OnDetailViewSaved);
+            eventAggregator.GetEvent<DetailViewDeletedEvent>().Subscribe(OnDetailViewDeleted);
+        }
+
+        private void OnDetailViewSaved(DetailViewSavedEventArgs e)
+        {
+            switch (e.ViewModelName)
+            {
+                case nameof(MemberDetailViewModel):
+                    OnDetailSaved(Members, e);
+                    break;
+                case nameof(TrainerDetailViewModel):
+                    OnDetailSaved(Trainers, e);
+                    break;
+            }
+        }
+
+        private void OnDetailSaved(ObservableCollection<NavigationItemViewModel> items,
+            DetailViewSavedEventArgs e)
+        {
+            var lookupItem = items.SingleOrDefault(item => item.Id == e.Id);
+
+            if (lookupItem == null)
+            {
+                items.Add(new NavigationItemViewModel(
+                    eventAggregator, e.Id, e.DisplayMember, e.ViewModelName));
+            }
+            else
+            {
+                lookupItem.DisplayMember = e.DisplayMember;
+            }
+        }
+
+        private void OnDetailViewDeleted(DetailViewDeletedEventArgs e)
+        {
+            switch (e.ViewModelName)
+            {
+                case nameof(MemberDetailViewModel):
+                    OnDetailDeleted(Members, e);
+                    break;
+                case nameof(TrainerDetailViewModel):
+                    OnDetailDeleted(Trainers, e);
+                    break;
+            }
+        }
+
+        private void OnDetailDeleted(ObservableCollection<NavigationItemViewModel> items,
+            DetailViewDeletedEventArgs e)
+        {
+            var item = items.SingleOrDefault(f => f.Id == e.Id);
+
+            if (item != null)
+            {
+                items.Remove(item);
             }
         }
     }

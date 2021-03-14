@@ -16,7 +16,6 @@ namespace Gyman.BusinessLogicLayer
         public string Surname { get; set; }
 
         [Phone]
-        [Required]
         public string Phone { get; set; }
 
         public bool IsBusy { get; set; }
