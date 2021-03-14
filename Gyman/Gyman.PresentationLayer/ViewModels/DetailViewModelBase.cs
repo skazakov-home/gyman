@@ -68,11 +68,11 @@ namespace Gyman.PresentationLayer.ViewModels
 
         protected abstract void OnDelete();
 
-        protected virtual void OnCloseDetailView()
+        protected virtual async void OnCloseDetailView()
         {
             if (HasChanges)
             {
-                var result = dialogMessageService.ShowOkCancelDialog(
+                var result = await dialogMessageService.ShowOkCancelDialogAsync(
                     "You've made changes. Close this item?", "Question");
 
                 if (result == DialogMessageResult.Cancel)
@@ -122,14 +122,14 @@ namespace Gyman.PresentationLayer.ViewModels
 
                 if (databaseValues == null)
                 {
-                    dialogMessageService.ShowInfoDialog(
+                    await dialogMessageService.ShowInfoDialogAsync(
                         "The entity has been deleted by another user.");
                     RaiseDetailViewDeletedEvent(Id);
 
                     return;
                 }
 
-                var result = dialogMessageService.ShowOkCancelDialog(
+                var result = await dialogMessageService.ShowOkCancelDialogAsync(
                     "The entity has been changed in the mean time by someone else. " +
                     "Click OK to save you changes anyway, click Cancel to reload " +
                     "the entity from the database.", "Question");

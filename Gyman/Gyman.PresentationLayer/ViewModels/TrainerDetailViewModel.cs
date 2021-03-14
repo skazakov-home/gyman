@@ -55,7 +55,7 @@ namespace Gyman.PresentationLayer.ViewModels
 
         protected override async void OnDelete()
         {
-            var result = dialogMessageService.ShowOkCancelDialog(
+            var result = await dialogMessageService.ShowOkCancelDialogAsync(
                 $"Do you really want to delete the trainer {Trainer.Name}?",
                 "Question");
 

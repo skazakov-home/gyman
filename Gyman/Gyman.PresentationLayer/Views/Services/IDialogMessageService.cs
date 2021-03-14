@@ -1,8 +1,10 @@
-﻿namespace Gyman.PresentationLayer.Views.Services
+﻿using System.Threading.Tasks;
+
+namespace Gyman.PresentationLayer.Views.Services
 {
     public interface IDialogMessageService
     {
-        DialogMessageResult ShowInfoDialog(string message);
-        DialogMessageResult ShowOkCancelDialog(string message, string caption);
+        Task<DialogMessageResult> ShowInfoDialogAsync(string message);
+        Task<DialogMessageResult> ShowOkCancelDialogAsync(string message, string caption);
     }
 }

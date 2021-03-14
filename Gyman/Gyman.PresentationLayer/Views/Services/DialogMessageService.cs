@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Gyman.PresentationLayer.Views.Services
 {
@@ -10,20 +13,22 @@ namespace Gyman.PresentationLayer.Views.Services
 
     public class DialogMessageService : IDialogMessageService
     {
-        public DialogMessageResult ShowOkCancelDialog(string message, string caption)
-        {
-            var result = MessageBox.Show(message, caption, MessageBoxButton.OKCancel);
+        private MetroWindow MainWindow => (MetroWindow)Application.Current.MainWindow;
 
-            return result == MessageBoxResult.OK
+        public async Task<DialogMessageResult> ShowOkCancelDialogAsync(string message, string caption)
+        {
+            var result = await MainWindow
+                .ShowMessageAsync(caption, message, MessageDialogStyle.AffirmativeAndNegative);
+
+            return result == MessageDialogResult.Affirmative
                 ? DialogMessageResult.OK
                 : DialogMessageResult.Cancel;
         }
 
-        public DialogMessageResult ShowInfoDialog(string message)
+        public async Task<DialogMessageResult> ShowInfoDialogAsync(string message)
         {
             const string caption = "Info";
-
-            MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+            await MainWindow.ShowMessageAsync(caption, message);
 
             return DialogMessageResult.OK;
         }
