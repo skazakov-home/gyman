@@ -19,54 +19,93 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Column="0" Grid.Row="0"
-               Content="Name"/>
-        <TextBox Grid.Column="0" Grid.Row="1"
-                 Text="{Binding Member.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0"
+               Grid.Row="0"
+               Content="Name"
+               Margin="10 0"/>
+        <TextBox Grid.Column="0"
+                 Grid.Row="1"
+                 Text="{Binding Member.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="1" Grid.Row="0"
-               Content="Surname"/>
-        <TextBox Grid.Column="1" Grid.Row="1"
-                 Text="{Binding Member.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="1"
+               Grid.Row="0"
+               Content="Surname"
+               Margin="10 0"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="1"
+                 Text="{Binding Member.Surname, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="0" Grid.Row="2"
-               Content="Height"/>
-        <TextBox Grid.Column="0" Grid.Row="3"
-                 Text="{Binding Member.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0"
+               Grid.Row="2"
+               Content="Height"
+               Margin="10 0"/>
+        <TextBox Grid.Column="0"
+                 Grid.Row="3"
+                 Text="{Binding Member.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="1" Grid.Row="2"
-               Content="Weight"/>
-        <TextBox Grid.Column="1" Grid.Row="3"
-                 Text="{Binding Member.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="1"
+               Grid.Row="2"
+               Content="Weight"
+               Margin="10 0"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="3"
+                 Text="{Binding Member.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="0" Grid.Row="4"
-               Content="Age"/>
-        <TextBox Grid.Column="0" Grid.Row="5"
-                 Text="{Binding Member.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0"
+               Grid.Row="4"
+               Content="Age"
+               Margin="10 0"/>
+        <TextBox Grid.Column="0"
+                 Grid.Row="5"
+                 Text="{Binding Member.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="1" Grid.Row="4"
-               Content="Subscription"/>
+        <Label Grid.Column="1"
+               Grid.Row="4"
+               Content="Subscription"
+               Margin="10 0"/>
         <ComboBox Grid.Column="1" Grid.Row="5"
                   ItemsSource="{Binding Subscriptions}"
                   DisplayMemberPath="DisplayMember"
                   SelectedValuePath="Id"
-                  SelectedValue="{Binding Member.SubscriptionId, Mode=TwoWay}"/>
+                  SelectedValue="{Binding Member.SubscriptionId, Mode=TwoWay}"
+                  Margin="10 0 10 10"/>
 
-        <Label Grid.Column="0" Grid.Row="6"
-               Content="Email"/>
-        <TextBox Grid.Column="0" Grid.Row="7"
-                 Text="{Binding Member.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="0"
+               Grid.Row="6"
+               Content="Email"
+               Margin="10 0"/>
+        <TextBox Grid.Column="0"
+                 Grid.Row="7"
+                 Text="{Binding Member.Email, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <Label Grid.Column="1" Grid.Row="6"
-               Content="Phone"/>
-        <TextBox Grid.Column="1" Grid.Row="7"
-                 Text="{Binding Member.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Column="1"
+               Grid.Row="6"
+               Content="Phone"
+               Margin="10 0"/>
+        <TextBox Grid.Column="1"
+                 Grid.Row="7"
+                 Text="{Binding Member.Phone, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="10 0 10 10"/>
 
-        <StackPanel Grid.Column="1" Grid.Row="9"
+        <StackPanel Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="9"
                     Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Button Content="Save" Command="{Binding SaveCommand}"/>
-            <Button Content="Delete" Command="{Binding DeleteCommand}"/>
+                    HorizontalAlignment="Right"
+                    Margin="10">
+            <Button Content="Save"
+                    Command="{Binding SaveCommand}"
+                    Width="125"
+                    Margin="0 0 10 0"/>
+            <Button Content="Delete"
+                    Command="{Binding DeleteCommand}"
+                    Width="125"/>
         </StackPanel>
     </Grid>
 </UserControl>

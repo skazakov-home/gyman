@@ -1,20 +1,20 @@
-﻿<Window x:Class="Gyman.PresentationLayer.Views.MainView"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
-        xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels"
-        mc:Ignorable="d"
-        Title="Gyman"
-        WindowStartupLocation="CenterScreen"
-        MinHeight="768"
-        MinWidth="1248"
-        SnapsToDevicePixels="True">
+﻿<mah:MetroWindow x:Class="Gyman.PresentationLayer.Views.MainView"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
+                 xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 mc:Ignorable="d"
+                 Title="GYMAN"
+                 WindowStartupLocation="CenterScreen"
+                 MinHeight="384"
+                 MinWidth="576"
+                 SnapsToDevicePixels="True">
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="3*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,7 +22,10 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <Menu Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="0">
+        <Menu Grid.Column="0"
+              Grid.ColumnSpan="3"
+              Grid.Row="0"
+              FontSize="16">
             <MenuItem Header="Add">
                 <MenuItem Header="Member"
                           Command="{Binding CreateNewDetailViewCommand}"
@@ -31,19 +34,22 @@
                           Command="{Binding CreateNewDetailViewCommand}"
                           CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
             </MenuItem>
+            <MenuItem Header="View">
+                <MenuItem Header="All members"/>
+                <MenuItem Header="All trainers"/>
+                <MenuItem Header="Schedule"/>
+            </MenuItem>
         </Menu>
 
-        <v:NavigationView Grid.Column="0" Grid.Row="1"
+        <v:NavigationView Grid.Column="0"
+                          Grid.Row="1"
                           DataContext="{Binding NavigationViewModel}"/>
 
-        <GridSplitter Grid.Column="1" Grid.Row="1"
-                      Width="3"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Stretch" />
-
-        <TabControl Grid.Column="2" Grid.Row="1"
+        <TabControl Grid.Column="1"
+                    Grid.Row="1"
                     ItemsSource="{Binding DetailViewModels}"
                     SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}"
-                    ItemTemplate="{StaticResource DetailViewItemTemplate}"/>
+                    ItemTemplate="{StaticResource DetailViewItemTemplate}"
+                    ItemContainerStyle="{StaticResource DetailViewItemContainerStyle}"/>
     </Grid>
-</Window>
+</mah:MetroWindow>

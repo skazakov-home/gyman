@@ -7,21 +7,25 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <GroupBox Grid.Row="0"
+        <Expander Grid.Row="0"
                   Header="Members"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Margin="2">
             <ItemsControl ItemsSource="{Binding Members}"
                           ItemTemplate="{StaticResource NavigationItemTemplate}"
-                          ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"/>
-        </GroupBox>
-        <GroupBox Grid.Row="1"
+                          ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"
+                          Margin="10"/>
+        </Expander>
+        <Expander Grid.Row="1"
                   Header="Trainers"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Margin="2">
             <ItemsControl ItemsSource="{Binding Trainers}"
                           ItemTemplate="{StaticResource NavigationItemTemplate}"
-                          ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"/>
-        </GroupBox>
+                          ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"
+                          Margin="10"/>
+        </Expander>
     </Grid>
 </UserControl>

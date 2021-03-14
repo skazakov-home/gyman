@@ -2,88 +2,157 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
-             xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels">
+             xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
     <Application.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <!-- Theme setting -->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+                <!-- Own resourcies -->
+                <ResourceDictionary>
+                    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                    
+                    <!-- Button Style -->
+                    <Style TargetType="Button" BasedOn="{StaticResource MahApps.Styles.Button}">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
+                    
+                    <!-- Label Style -->
+                    <Style TargetType="Label" BasedOn="{StaticResource MahApps.Styles.Label}">
+                        <Setter Property="FontSize" Value="14"/>
+                        <Setter Property="Foreground" Value="DarkGray"/>
+                    </Style>
 
-        <!-- Member Detail View Template -->
-        <DataTemplate DataType="{x:Type vm:MemberDetailViewModel}">
-            <v:MemberDetailView/>
-        </DataTemplate>
+                    <!-- Member Detail View Template -->
+                    <DataTemplate DataType="{x:Type vm:MemberDetailViewModel}">
+                        <v:MemberDetailView/>
+                    </DataTemplate>
 
-        <!-- Trainer Detail View Template -->
-        <DataTemplate DataType="{x:Type vm:TrainerDetailViewModel}">
-            <v:TrainerDetailView/>
-        </DataTemplate>
+                    <!-- Trainer Detail View Template -->
+                    <DataTemplate DataType="{x:Type vm:TrainerDetailViewModel}">
+                        <v:TrainerDetailView/>
+                    </DataTemplate>
 
-        <!-- TextBox Error Style -->
-        <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Validation.ErrorTemplate">
-                <Setter.Value>
-                    <ControlTemplate>
-                        <StackPanel>
-                            <AdornedElementPlaceholder x:Name="Placeholder"/>
-                            <TextBlock FontSize="12"
-                                       Foreground="Red"
-                                       Text="{Binding ElementName=Placeholder,
-                                Path=AdornedElement.(Validation.Errors)/ErrorContent}"/>
-                        </StackPanel>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="Background" Value="Red"/>
-                    <Setter Property="Foreground" Value="White"/>
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={RelativeSource Self},
-                        Path=(Validation.Errors)/ErrorContent}"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+                    <!-- TextBox Style -->
+                    <Style TargetType="TextBox"
+                           BasedOn="{StaticResource {x:Type TextBox}}">
+                        <Setter Property="FontSize"
+                                Value="16"/>
+                        <Setter Property="Validation.ErrorTemplate">
+                            <Setter.Value>
+                                <ControlTemplate>
+                                    <StackPanel>
+                                        <AdornedElementPlaceholder x:Name="Placeholder"/>
+                                        <TextBlock FontSize="12"
+                                                   Foreground="White"
+                                                   Text="{Binding
+                                                        ElementName=Placeholder,
+                                                        Path=AdornedElement.(Validation.Errors)/ErrorContent}"/>
+                                    </StackPanel>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Validation.HasError"
+                                     Value="True">
+                                <Setter Property="Background"
+                                        Value="DarkRed"/>
+                                <Setter Property="Foreground"
+                                        Value="White"/>
+                                <Setter Property="ToolTip"
+                                        Value="{Binding
+                                            RelativeSource={RelativeSource Self},
+                                            Path=(Validation.Errors)/ErrorContent}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
 
-        <!-- Navigation Item Template -->
-        <DataTemplate x:Key="NavigationItemTemplate">
-            <Button Content="{Binding DisplayMember}"
-                    Command="{Binding OpenDetailViewCommand}">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
+                    <!-- Navigation Item Template -->
+                    <DataTemplate x:Key="NavigationItemTemplate">
+                        <Button Content="{Binding DisplayMember}"
+                                Command="{Binding OpenDetailViewCommand}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="FontSize" Value="14"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="Margin" Value="3"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Setter Property="Cursor"
+                                                    Value="Hand"/>
+                                        </Trigger>
+                                        <Trigger Property="IsPressed"
+                                                 Value="True">
+                                            <Setter Property="FontWeight"
+                                                    Value="Normal"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </DataTemplate>
+
+                    <!-- Navigation Item Container Style -->
+                    <Style x:Key="NavigationItemContainerStyle"
+                           TargetType="ContentPresenter">
+                        <Setter Property="HorizontalAlignment"
+                                Value="Left"/>
+                    </Style>
+
+                    <!-- Detail View Item Template -->
+                    <DataTemplate x:Key="DetailViewItemTemplate">
                         <Grid>
-                            <ContentPresenter
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0"
+                                       Text="{Binding Title}"
+                                       FontSize="24"/>
+                            <TextBlock Grid.Column="1"
+                                       Text="*"
+                                       Visibility="{Binding
+                                            Path=HasChanges,
+                                            Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            <Button Grid.Column="2"
+                                    HorizontalAlignment="Right"
+                                    Margin="10 0 0 0"
+                                    Command="{Binding CloseDetailViewCommand}"
+                                    Style="{StaticResource MahApps.Styles.Button.Chromeless}">
+                                <Button.ContentTemplate>
+                                    <DataTemplate>
+                                        <iconPacks:PackIconMaterial Kind="CloseBox"
+                                                                    Foreground="Red"/>
+                                    </DataTemplate>
+                                </Button.ContentTemplate>
+                            </Button>
                         </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Cursor" Value="Hand"/>
-                                <Setter Property="FontWeight" Value="Bold"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="FontWeight" Value="Normal"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Button.Template>
-            </Button>
-        </DataTemplate>
+                    </DataTemplate>
 
-        <!-- Navigation Item Container Style -->
-        <Style x:Key="NavigationItemContainerStyle" TargetType="ContentPresenter">
-            <Setter Property="HorizontalAlignment" Value="Left"/>
-        </Style>
-
-        <!-- Detail View Item Template -->
-        <DataTemplate x:Key="DetailViewItemTemplate">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{Binding Title}"/>
-                <TextBlock Text="*"
-                           Visibility="{Binding HasChanges,
-                    Converter={StaticResource BooleanToVisibilityConverter}}"/>
-                <Button Content="x"
-                        VerticalContentAlignment="Top"
-                        Command="{Binding CloseDetailViewCommand}"/>
-            </StackPanel>
-        </DataTemplate>
+                    <!-- Detail View Item Container Style -->
+                    <Style x:Key="DetailViewItemContainerStyle"
+                           TargetType="TabItem"
+                           BasedOn="{StaticResource {x:Type TabItem}}">
+                        <Setter Property="Background" Value="#333333"/>
+                        <Setter Property="BorderBrush" Value="Transparent"/>
+                        <Setter Property="BorderThickness" Value="2"/>
+                    </Style>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
