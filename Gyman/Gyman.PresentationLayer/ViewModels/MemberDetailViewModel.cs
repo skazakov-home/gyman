@@ -143,6 +143,12 @@ namespace Gyman.PresentationLayer.ViewModels
             if (Member.Id == 0)
             {
                 Member.Name = "";
+                Member.Surname = "";
+                Member.Email = "";
+                Member.Phone = "";
+                Member.Age = 0;
+                Member.Weight = 0;
+                Member.Height = 0;
             }
         }
 
