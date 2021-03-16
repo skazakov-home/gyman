@@ -4,6 +4,7 @@ using System.Windows.Threading;
 using Autofac;
 using Gyman.PresentationLayer.Startup;
 using Gyman.PresentationLayer.Views;
+using MahApps.Metro.Controls.Dialogs;
 
 namespace Gyman.PresentationLayer
 {
@@ -21,8 +22,36 @@ namespace Gyman.PresentationLayer
             var bootstrapper = new Bootstrapper();
             var container = bootstrapper.Bootstrap();
             var mainView = container.Resolve<MainView>();
-
+            ShowLoginDialogAsync(mainView);
             mainView.Show();
+        }
+
+        private async void ShowLoginDialogAsync(MainView mainView)
+        {
+            const string title = "Login";
+            const string message = "Administrator";
+
+            var settings = new LoginDialogSettings
+            {
+                UsernameWatermark = "Login...",
+                PasswordWatermark = "Password...",
+                NegativeButtonVisibility = Visibility.Visible,
+                EnablePasswordPreview = true
+            };
+
+            bool isDone;
+            do
+            {
+                var result = await mainView.ShowLoginAsync(title, message, settings);
+
+                if (result == null)
+                {
+                    Shutdown();
+                    break;
+                }
+
+                isDone = result.Username == "Admin" && result.Password == "12345";
+            } while (!isDone);
         }
 
         private void SubscribeToEvents()
