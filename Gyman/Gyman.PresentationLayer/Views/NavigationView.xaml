@@ -5,6 +5,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Expander Grid.Row="0"
@@ -17,6 +18,7 @@
                           ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"
                           Margin="10"/>
         </Expander>
+        
         <Expander Grid.Row="1"
                   Header="Trainers"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
@@ -26,6 +28,13 @@
                           ItemTemplate="{StaticResource NavigationItemTemplate}"
                           ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"
                           Margin="10"/>
+        </Expander>
+
+        <Expander Grid.Row="2"
+                  Header="Subscribes"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  Margin="2">
         </Expander>
     </Grid>
 </UserControl>
