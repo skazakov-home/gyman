@@ -43,7 +43,12 @@
                Margin="10 0"/>
         <TextBox Grid.Column="0"
                  Grid.Row="3"
-                 Text="{Binding Member.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Text="{Binding
+                    Member.Height,
+                    Mode=TwoWay,
+                    ValidatesOnExceptions=True,
+                    NotifyOnValidationError=True,
+                    UpdateSourceTrigger=PropertyChanged}"
                  Margin="10 0 10 10"/>
 
         <Label Grid.Column="1"
