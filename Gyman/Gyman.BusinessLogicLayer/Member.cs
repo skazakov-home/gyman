@@ -8,27 +8,27 @@ namespace Gyman.BusinessLogicLayer
 
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)]
+        [Required(ErrorMessage = "Поле \"Имя\" обязательно для заполнения.")]
+        [StringLength(50, ErrorMessage = "Длина не должна превышать 50 символов.")]
         public string Name { get; set; }
 
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "Длина не должна превышать 50 символов.")]
         public string Surname { get; set; }
 
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Недействительный адрес электронной почты.")]
         public string Email { get; set; }
 
-        [Phone]
-        [Required]
+        [Phone(ErrorMessage = "Недействительный телефон.")]
+        [Required(ErrorMessage = "Поле \"Телефон\" обязательно для заполнения.")]
         public string Phone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле \"Возраст\" обязательно для заполнения.")]
         public int Age { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле \"Вес\" обязательно для заполнения.")]
         public double Weight { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле \"Рост\" обязательно для заполнения.")]
         public double Height { get; set; }
 
         public int? SubscriptionId { get; set; }

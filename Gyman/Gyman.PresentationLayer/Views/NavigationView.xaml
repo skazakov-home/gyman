@@ -9,7 +9,7 @@
         </Grid.RowDefinitions>
 
         <Expander Grid.Row="0"
-                  Header="Members"
+                  Header="Клиенты"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Margin="2">
@@ -20,7 +20,7 @@
         </Expander>
         
         <Expander Grid.Row="1"
-                  Header="Trainers"
+                  Header="Тренеры"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Margin="2">
@@ -31,7 +31,7 @@
         </Expander>
 
         <Expander Grid.Row="2"
-                  Header="Subscribes"
+                  Header="Абонементы"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Margin="2">

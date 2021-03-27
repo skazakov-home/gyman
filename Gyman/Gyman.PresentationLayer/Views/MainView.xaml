@@ -26,18 +26,18 @@
               Grid.ColumnSpan="3"
               Grid.Row="0"
               FontSize="16">
-            <MenuItem Header="Add">
-                <MenuItem Header="Member"
+            <MenuItem Header="Добавить">
+                <MenuItem Header="Нового клиента"
                           Command="{Binding CreateNewDetailViewCommand}"
                           CommandParameter="{x:Type vm:MemberDetailViewModel}"/>
-                <MenuItem Header="Trainer"
+                <MenuItem Header="Нового тренера"
                           Command="{Binding CreateNewDetailViewCommand}"
                           CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
             </MenuItem>
-            <MenuItem Header="View">
-                <MenuItem Header="All members"/>
-                <MenuItem Header="All trainers"/>
-                <MenuItem Header="Schedule"/>
+            <MenuItem Header="Показать">
+                <MenuItem Header="Всех клиентов"/>
+                <MenuItem Header="Всех тренеров"/>
+                <MenuItem Header="Расписание"/>
             </MenuItem>
         </Menu>
 

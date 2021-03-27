@@ -68,19 +68,19 @@ namespace Gyman.PresentationLayer.Wrappers
                 case nameof(Age):
                     if (AgeIsNotValid())
                     {
-                        yield return "Age must be between 1 and 120.";
+                        yield return "Возраст должен находится в диапазоне от 1 до 120.";
                     }
                     break;
                 case nameof(Weight):
                     if (WeightIsNotValid())
                     {
-                        yield return "Weight cannot be negative or zero.";
+                        yield return "Вес не может быть отрицательным или нулем.";
                     }
                     break;
                 case nameof(Height):
                     if (HeightIsNotValid())
                     {
-                        yield return "Height cannot be negative or zero.";
+                        yield return "Рост не может быть отрицательным или нулем.";
                     }
                     break;
             }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Gyman.BusinessLogicLayer
 {
@@ -17,7 +16,7 @@ namespace Gyman.BusinessLogicLayer
 
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Поле \"Стоимость\" обязательно для заполнения.")]
         public decimal Cost { get; set; }
 
         public int NumberOfDays { get; set; }
