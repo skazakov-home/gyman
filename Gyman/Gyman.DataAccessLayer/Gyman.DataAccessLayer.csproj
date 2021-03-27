@@ -52,17 +52,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GymanDbContext.cs" />
-    <Compile Include="Migrations\202102061330267_Initial.cs" />
-    <Compile Include="Migrations\202102061330267_Initial.designer.cs">
-      <DependentUpon>202102061330267_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202102061405336_Initial1.cs" />
-    <Compile Include="Migrations\202102061405336_Initial1.designer.cs">
-      <DependentUpon>202102061405336_Initial1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202103141628195_ChangeTrainerModel.cs" />
-    <Compile Include="Migrations\202103141628195_ChangeTrainerModel.designer.cs">
-      <DependentUpon>202103141628195_ChangeTrainerModel.cs</DependentUpon>
+    <Compile Include="Migrations\202103271618200_Initial.cs" />
+    <Compile Include="Migrations\202103271618200_Initial.designer.cs">
+      <DependentUpon>202103271618200_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -78,14 +70,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202102061330267_Initial.resx">
-      <DependentUpon>202102061330267_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202102061405336_Initial1.resx">
-      <DependentUpon>202102061405336_Initial1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202103141628195_ChangeTrainerModel.resx">
-      <DependentUpon>202103141628195_ChangeTrainerModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202103271618200_Initial.resx">
+      <DependentUpon>202103271618200_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

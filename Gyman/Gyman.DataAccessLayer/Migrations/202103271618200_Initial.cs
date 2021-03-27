@@ -19,10 +19,10 @@
                         Age = c.Int(nullable: false),
                         Weight = c.Double(nullable: false),
                         Height = c.Double(nullable: false),
-                        SubscriptionId = c.Int(nullable: false),
+                        SubscriptionId = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Subscription", t => t.SubscriptionId, cascadeDelete: true)
+                .ForeignKey("dbo.Subscription", t => t.SubscriptionId)
                 .Index(t => t.SubscriptionId);
             
             CreateTable(
@@ -43,7 +43,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 50),
                         Surname = c.String(maxLength: 50),
-                        Phone = c.String(nullable: false),
+                        Phone = c.String(),
                         IsBusy = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
