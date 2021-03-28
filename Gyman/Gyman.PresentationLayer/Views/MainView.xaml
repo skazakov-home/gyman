@@ -27,10 +27,13 @@
               Grid.Row="0"
               FontSize="16">
             <MenuItem Header="Добавить">
-                <MenuItem Header="Нового клиента"
+                <MenuItem Header="Клиента"
                           Command="{Binding CreateNewTabViewCommand}"
                           CommandParameter="{x:Type vm:MemberDetailViewModel}"/>
-                <MenuItem Header="Нового тренера"
+                <MenuItem Header="Тренера"
+                          Command="{Binding CreateNewTabViewCommand}"
+                          CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
+                <MenuItem Header="Тренировку"
                           Command="{Binding CreateNewTabViewCommand}"
                           CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
             </MenuItem>
