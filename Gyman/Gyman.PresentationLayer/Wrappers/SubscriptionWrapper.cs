@@ -1,5 +1,4 @@
-﻿using System;
-using Gyman.BusinessLogicLayer;
+﻿using Gyman.BusinessLogicLayer;
 
 namespace Gyman.PresentationLayer.Wrappers
 {

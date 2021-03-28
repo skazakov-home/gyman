@@ -121,6 +121,8 @@ namespace Gyman.PresentationLayer.ViewModels
             if (Trainer.Id == 0)
             {
                 Trainer.Name = "";
+                Trainer.Surname = "";
+                Trainer.Phone = "";
             }
         }
 

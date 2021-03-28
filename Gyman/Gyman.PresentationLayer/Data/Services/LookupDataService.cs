@@ -42,7 +42,8 @@ namespace Gyman.PresentationLayer.Data.Services
                     .Select(subscription => new LookupItem
                     {
                         Id = subscription.Id,
-                        DisplayMember = subscription.SubscriptionType.ToString()
+                        DisplayMember = "Абонемент \"" +
+                            subscription.SubscriptionType.ToString() + "\""
                     })
                     .ToListAsync();
             }

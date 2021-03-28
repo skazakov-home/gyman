@@ -13,36 +13,42 @@ namespace Gyman.PresentationLayer.ViewModels
         private readonly IEventAggregator eventAggregator;
         private readonly IMemberLookupDataService memberLookupDataService;
         private readonly ITrainerLookupDataService trainerLookupDataService;
+        private readonly ISubscriptionLookupDataService subscriptionLookupDataService;
 
         public NavigationViewModel(
             IEventAggregator eventAggregator,
             IMemberLookupDataService memberLookupDataService,
-            ITrainerLookupDataService trainerLookupDataService)
+            ITrainerLookupDataService trainerLookupDataService,
+            ISubscriptionLookupDataService subscriptionLookupDataService)
         {
             this.eventAggregator = eventAggregator;
             this.memberLookupDataService = memberLookupDataService;
             this.trainerLookupDataService = trainerLookupDataService;
-
+            this.subscriptionLookupDataService = subscriptionLookupDataService;
             Members = new ObservableCollection<NavigationItemViewModel>();
             Trainers = new ObservableCollection<NavigationItemViewModel>();
+            Subscriptions = new ObservableCollection<NavigationItemViewModel>();
 
             SubscribeEvents();
         }
 
         public ObservableCollection<NavigationItemViewModel> Members { get; }
         public ObservableCollection<NavigationItemViewModel> Trainers { get; }
+        public ObservableCollection<NavigationItemViewModel> Subscriptions { get; }
 
         public async Task LoadAsync()
         {
             ClearItems();
             await LoadMembers();
             await LoadTrainers();
+            await LoadSubscriptions();
         }
 
         private void ClearItems()
         {
             Members.Clear();
             Trainers.Clear();
+            Subscriptions.Clear();
         }
 
         private async Task LoadMembers()
@@ -73,6 +79,20 @@ namespace Gyman.PresentationLayer.ViewModels
             }
         }
 
+        private async Task LoadSubscriptions()
+        {
+            var subscriptions = await subscriptionLookupDataService.LoadSubscriptionLookupItemsAsync();
+
+            foreach (var subscription in subscriptions)
+            {
+                Subscriptions.Add(new NavigationItemViewModel(
+                    eventAggregator,
+                    subscription.Id,
+                    subscription.DisplayMember,
+                    nameof(SubscriptionDetailViewModel)));
+            }
+        }
+
         private void SubscribeEvents()
         {
             eventAggregator.GetEvent<DetailViewSavedEvent>().Subscribe(OnDetailViewSaved);
@@ -88,6 +108,9 @@ namespace Gyman.PresentationLayer.ViewModels
                     break;
                 case nameof(TrainerDetailViewModel):
                     OnDetailSaved(Trainers, e);
+                    break;
+                case nameof(SubscriptionDetailViewModel):
+                    OnDetailSaved(Subscriptions, e);
                     break;
             }
         }
@@ -117,6 +140,9 @@ namespace Gyman.PresentationLayer.ViewModels
                     break;
                 case nameof(TrainerDetailViewModel):
                     OnDetailDeleted(Trainers, e);
+                    break;
+                case nameof(SubscriptionDetailViewModel):
+                    OnDetailDeleted(Subscriptions, e);
                     break;
             }
         }

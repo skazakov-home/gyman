@@ -35,6 +35,10 @@
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   Margin="2">
+            <ItemsControl ItemsSource="{Binding Subscriptions}"
+                          ItemTemplate="{StaticResource NavigationItemTemplate}"
+                          ItemContainerStyle="{StaticResource NavigationItemContainerStyle}"
+                          Margin="10"/>
         </Expander>
     </Grid>
 </UserControl>

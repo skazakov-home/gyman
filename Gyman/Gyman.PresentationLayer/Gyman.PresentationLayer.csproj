@@ -118,8 +118,10 @@
     <Compile Include="Data\Repositories\GenericRepository.cs" />
     <Compile Include="Data\Repositories\IGenericRepository.cs" />
     <Compile Include="Data\Repositories\IMemberRepository.cs" />
+    <Compile Include="Data\Repositories\ISubscriptionRepository.cs" />
     <Compile Include="Data\Repositories\ITrainerRepository.cs" />
     <Compile Include="Data\Repositories\MemberRepository.cs" />
+    <Compile Include="Data\Repositories\SubscriptionRepository.cs" />
     <Compile Include="Data\Repositories\TrainerRepository.cs" />
     <Compile Include="Data\Services\IMemberLookupDataService.cs" />
     <Compile Include="Data\Services\ISubscriptionLookupDataService.cs" />
@@ -134,7 +136,9 @@
     <Compile Include="Events\DetailViewSavedEvent.cs" />
     <Compile Include="Events\DetailViewSavedEventArgs.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModels\ISubscriptionDetailViewModel.cs" />
     <Compile Include="ViewModels\ITrainersViewModel.cs" />
+    <Compile Include="ViewModels\SubscriptionDetailViewModel.cs" />
     <Compile Include="ViewModels\TabViewModelBase.cs" />
     <Compile Include="ViewModels\IMemberDetailViewModel.cs" />
     <Compile Include="ViewModels\IMembersViewModel.cs" />
@@ -163,6 +167,9 @@
     </Compile>
     <Compile Include="Views\Services\DialogMessageService.cs" />
     <Compile Include="Views\Services\IDialogMessageService.cs" />
+    <Compile Include="Views\SubscriptionDetailView.xaml.cs">
+      <DependentUpon>SubscriptionDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TrainerDetailView.xaml.cs">
       <DependentUpon>TrainerDetailView.xaml</DependentUpon>
     </Compile>
@@ -227,6 +234,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SubscriptionDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
