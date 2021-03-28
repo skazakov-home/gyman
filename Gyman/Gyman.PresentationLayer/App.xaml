@@ -48,6 +48,11 @@
                         <v:TrainingDetailView/>
                     </DataTemplate>
 
+                    <!-- Schedule View Template -->
+                    <DataTemplate DataType="{x:Type vm:ScheduleViewModel}">
+                        <v:ScheduleView/>
+                    </DataTemplate>
+
                     <!-- Subscription Detail View Template -->
                     <DataTemplate DataType="{x:Type vm:SubscriptionDetailViewModel}">
                         <v:SubscriptionDetailView/>

@@ -153,9 +153,11 @@
     <Compile Include="Events\DetailViewSavedEvent.cs" />
     <Compile Include="Events\DetailViewSavedEventArgs.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
+    <Compile Include="ViewModels\IScheduleViewModel.cs" />
     <Compile Include="ViewModels\ISubscriptionDetailViewModel.cs" />
     <Compile Include="ViewModels\ITrainersViewModel.cs" />
     <Compile Include="ViewModels\ITrainingDetailViewModel.cs" />
+    <Compile Include="ViewModels\ScheduleViewModel.cs" />
     <Compile Include="ViewModels\SubscriptionDetailViewModel.cs" />
     <Compile Include="ViewModels\TabViewModelBase.cs" />
     <Compile Include="ViewModels\IMemberDetailViewModel.cs" />
@@ -183,6 +185,9 @@
     </Compile>
     <Compile Include="Views\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ScheduleView.xaml.cs">
+      <DependentUpon>ScheduleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Services\DialogMessageService.cs" />
     <Compile Include="Views\Services\IDialogMessageService.cs" />
@@ -256,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NavigationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ScheduleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

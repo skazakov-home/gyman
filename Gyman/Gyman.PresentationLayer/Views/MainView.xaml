@@ -44,7 +44,9 @@
                 <MenuItem Header="Всех тренеров"
                           Command="{Binding CreateNewTabViewCommand}"
                           CommandParameter="{x:Type vm:TrainersViewModel}"/>
-                <MenuItem Header="Расписание"/>
+                <MenuItem Header="Расписание"
+                          Command="{Binding CreateNewTabViewCommand}"
+                          CommandParameter="{x:Type vm:ScheduleViewModel}"/>
             </MenuItem>
         </Menu>
 

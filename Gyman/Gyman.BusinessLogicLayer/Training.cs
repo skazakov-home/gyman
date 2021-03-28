@@ -4,7 +4,11 @@ namespace Gyman.BusinessLogicLayer
 {
     public class Training
     {
-        public Training() { }
+        public Training() 
+        {
+            Start = DateTime.Now;
+            End = DateTime.Now;
+        }
 
         public int Id { get; set; }
 

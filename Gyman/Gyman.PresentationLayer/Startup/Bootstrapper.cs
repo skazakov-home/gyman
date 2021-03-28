@@ -22,6 +22,7 @@ namespace Gyman.PresentationLayer.Startup
             builder.RegisterType<TrainerDetailViewModel>().Keyed<ITabViewModel>(nameof(TrainerDetailViewModel));
             builder.RegisterType<TrainingDetailViewModel>().Keyed<ITabViewModel>(nameof(TrainingDetailViewModel));
             builder.RegisterType<SubscriptionDetailViewModel>().Keyed<ITabViewModel>(nameof(SubscriptionDetailViewModel));
+            builder.RegisterType<ScheduleViewModel>().Keyed<ITabViewModel>(nameof(ScheduleViewModel));
             builder.RegisterType<MembersViewModel>().Keyed<ITabViewModel>(nameof(MembersViewModel));
             builder.RegisterType<TrainersViewModel>().Keyed<ITabViewModel>(nameof(TrainersViewModel));
 

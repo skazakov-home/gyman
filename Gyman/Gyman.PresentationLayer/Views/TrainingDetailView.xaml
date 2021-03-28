@@ -24,8 +24,9 @@
         <mah:DateTimePicker Grid.Column="0"
                             Grid.Row="1"
                             DisplayDateStart="{Binding Source={x:Static sys:DateTime.Now}}"
-                            DisplayDate="{Binding Training.Start, Mode=TwoWay,
+                            SelectedDateTime="{Binding Training.Start, Mode=TwoWay,
             UpdateSourceTrigger=PropertyChanged}"
+                            Culture="ru"
                             Margin="10 0 10 10"/>
 
         <Label Grid.Column="1"
@@ -35,8 +36,9 @@
         <mah:DateTimePicker Grid.Column="1"
                             Grid.Row="1"
                             DisplayDateStart="{Binding Source={x:Static sys:DateTime.Now}}"
-                            DisplayDate="{Binding Training.End, Mode=TwoWay,
+                            SelectedDateTime="{Binding Training.End, Mode=TwoWay,
             UpdateSourceTrigger=PropertyChanged}"
+                            Culture="ru"
                             Margin="10 0 10 10"/>
 
         <Label Grid.Column="0"
