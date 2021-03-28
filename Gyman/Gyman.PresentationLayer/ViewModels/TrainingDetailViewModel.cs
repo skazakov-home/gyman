@@ -36,12 +36,12 @@ namespace Gyman.PresentationLayer.ViewModels
 
         public override async Task LoadAsync(int trainingId)
         {
-            var trainer = trainingId > 0
+            var training = trainingId > 0
                 ? await trainingRepository.GetByIdAsync(trainingId)
                 : CreateNewTraining();
 
             Id = trainingId;
-            WrapTraining(trainer);
+            WrapTraining(training);
         }
 
         protected override bool CanSave()
@@ -111,7 +111,7 @@ namespace Gyman.PresentationLayer.ViewModels
 
         private void SetTitle()
         {
-            Title = $"Тренировка {Training.Id}";
+            Title = $"Тренировка";
         }
     }
 }

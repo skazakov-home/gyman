@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:v="clr-namespace:Gyman.PresentationLayer.Views"
              xmlns:vm="clr-namespace:Gyman.PresentationLayer.ViewModels"
-             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -56,6 +57,11 @@
                     <DataTemplate DataType="{x:Type vm:TrainersViewModel}">
                         <v:TrainersView/>
                     </DataTemplate>
+                    
+                     <!-- Date Time Picker Style --> 
+                    <Style TargetType="{x:Type mah:DateTimePicker}">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
 
                     <!-- TextBox Style -->
                     <Style TargetType="TextBox"
