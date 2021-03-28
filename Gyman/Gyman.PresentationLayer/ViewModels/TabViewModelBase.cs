@@ -10,14 +10,14 @@ using Prism.Events;
 
 namespace Gyman.PresentationLayer.ViewModels
 {
-    public abstract class DetailViewModelBase : ViewModelBase, IDetailViewModel
+    public abstract class TabViewModelBase : ViewModelBase, ITabViewModel
     {
         protected readonly IEventAggregator eventAggregator;
         protected readonly IDialogMessageService dialogMessageService;
         private bool hasChanges;
         private string title;
 
-        public DetailViewModelBase(
+        public TabViewModelBase(
             IEventAggregator eventAggregator,
             IDialogMessageService dialogMessageService)
         {
@@ -51,7 +51,7 @@ namespace Gyman.PresentationLayer.ViewModels
 
         public ICommand SaveCommand { get; private set; }
         public ICommand DeleteCommand { get; private set; }
-        public ICommand CloseDetailViewCommand { get; private set; }
+        public ICommand CloseTabViewCommand { get; private set; }
 
         public abstract Task LoadAsync(int id);
 
@@ -59,7 +59,7 @@ namespace Gyman.PresentationLayer.ViewModels
         {
             SaveCommand = new DelegateCommand(OnSave, CanSave);
             DeleteCommand = new DelegateCommand(OnDelete);
-            CloseDetailViewCommand = new DelegateCommand(OnCloseDetailView);
+            CloseTabViewCommand = new DelegateCommand(OnCloseDetailView);
         }
 
         protected abstract bool CanSave();

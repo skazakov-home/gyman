@@ -9,7 +9,7 @@ using Prism.Events;
 
 namespace Gyman.PresentationLayer.ViewModels
 {
-    public class TrainerDetailViewModel : DetailViewModelBase, ITrainerDetailViewModel
+    public class TrainerDetailViewModel : TabViewModelBase, ITrainerDetailViewModel
     {
         private readonly ITrainerRepository trainerRepository;
 

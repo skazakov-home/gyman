@@ -1,6 +1,6 @@
 ﻿namespace Gyman.PresentationLayer.ViewModels
 {
-    public interface IMemberDetailViewModel : ITabViewModel
+    public interface IMembersViewModel : ITabViewModel
     {
     }
 }

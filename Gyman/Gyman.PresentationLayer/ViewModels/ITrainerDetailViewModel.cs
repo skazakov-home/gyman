@@ -1,6 +1,6 @@
 ﻿namespace Gyman.PresentationLayer.ViewModels
 {
-    public interface ITrainerDetailViewModel : IDetailViewModel
+    public interface ITrainerDetailViewModel : ITabViewModel
     {
     }
 }

@@ -36,6 +36,16 @@
                     <DataTemplate DataType="{x:Type vm:TrainerDetailViewModel}">
                         <v:TrainerDetailView/>
                     </DataTemplate>
+                    
+                    <!-- Members View -->
+                    <DataTemplate DataType="{x:Type vm:MembersViewModel}">
+                        <v:MembersView/>
+                    </DataTemplate>
+
+                    <!-- Trainers View -->
+                    <DataTemplate DataType="{x:Type vm:TrainersViewModel}">
+                        <v:TrainersView/>
+                    </DataTemplate>
 
                     <!-- TextBox Style -->
                     <Style TargetType="TextBox"
@@ -112,8 +122,8 @@
                                 Value="Left"/>
                     </Style>
 
-                    <!-- Detail View Item Template -->
-                    <DataTemplate x:Key="DetailViewItemTemplate">
+                    <!-- Tab View Item Template -->
+                    <DataTemplate x:Key="TabViewItemTemplate">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
@@ -131,7 +141,7 @@
                             <Button Grid.Column="2"
                                     HorizontalAlignment="Right"
                                     Margin="10 0 0 0"
-                                    Command="{Binding CloseDetailViewCommand}"
+                                    Command="{Binding CloseTabViewCommand}"
                                     Style="{StaticResource MahApps.Styles.Button.Chromeless}">
                                 <Button.ContentTemplate>
                                     <DataTemplate>
@@ -143,8 +153,8 @@
                         </Grid>
                     </DataTemplate>
 
-                    <!-- Detail View Item Container Style -->
-                    <Style x:Key="DetailViewItemContainerStyle"
+                    <!-- Tab View Item Container Style -->
+                    <Style x:Key="TabViewItemContainerStyle"
                            TargetType="TabItem"
                            BasedOn="{StaticResource {x:Type TabItem}}">
                         <Setter Property="Background" Value="#333333"/>

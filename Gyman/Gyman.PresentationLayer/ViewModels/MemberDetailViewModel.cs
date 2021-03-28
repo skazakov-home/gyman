@@ -11,7 +11,7 @@ using Prism.Events;
 
 namespace Gyman.PresentationLayer.ViewModels
 {
-    public class MemberDetailViewModel : DetailViewModelBase, IMemberDetailViewModel
+    public class MemberDetailViewModel : TabViewModelBase, IMemberDetailViewModel
     {
         private readonly IMemberRepository memberRepository;
         private readonly ISubscriptionLookupDataService subscriptionLookupDataService;

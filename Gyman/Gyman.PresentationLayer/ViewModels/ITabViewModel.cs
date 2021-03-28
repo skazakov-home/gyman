@@ -2,10 +2,11 @@
 
 namespace Gyman.PresentationLayer.ViewModels
 {
-    public interface IDetailViewModel
+    public interface ITabViewModel
     {
+        int Id { get; }
+        string Title { get; set; }
         Task LoadAsync(int id);
         bool HasChanges { get; }
-        int Id { get; }
     }
 }

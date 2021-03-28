@@ -15,22 +15,22 @@ namespace Gyman.PresentationLayer.ViewModels
     {
         private readonly IEventAggregator eventAggregator;
         private readonly IDialogMessageService dialogMessageService;
-        private readonly IIndex<string, IDetailViewModel> detailViewModelCreator;
-        private IDetailViewModel selectedDetailViewModel;
+        private readonly IIndex<string, ITabViewModel> tabViewModelCreator;
+        private ITabViewModel selectedTabViewModel;
         private int newDetailViewId = 0;
 
         public MainViewModel(
             IEventAggregator eventAggregator,
             IDialogMessageService dialogMessageService,
             INavigationViewModel navigationViewModel,
-            IIndex<string, IDetailViewModel> detailViewModelCreator)
+            IIndex<string, ITabViewModel> tabViewModelCreator)
         {
             this.eventAggregator = eventAggregator;
             this.dialogMessageService = dialogMessageService;
-            this.detailViewModelCreator = detailViewModelCreator;
+            this.tabViewModelCreator = tabViewModelCreator;
 
             NavigationViewModel = navigationViewModel;
-            DetailViewModels = new ObservableCollection<IDetailViewModel>();
+            TabViewModels = new ObservableCollection<ITabViewModel>();
 
             SubscribeEvents();
             RegisterCommands();
@@ -38,19 +38,19 @@ namespace Gyman.PresentationLayer.ViewModels
 
         public INavigationViewModel NavigationViewModel { get; }
 
-        public ObservableCollection<IDetailViewModel> DetailViewModels { get; }
+        public ObservableCollection<ITabViewModel> TabViewModels { get; }
 
-        public IDetailViewModel SelectedDetailViewModel
+        public ITabViewModel SelectedTabViewModel
         {
-            get => selectedDetailViewModel;
+            get => selectedTabViewModel;
             set
             {
-                selectedDetailViewModel = value;
+                selectedTabViewModel = value;
                 OnPropertyChanged();
             }
         }
 
-        public ICommand CreateNewDetailViewCommand { get; private set; }
+        public ICommand CreateNewTabViewCommand { get; private set; }
 
         public async Task LoadAsync()
         {
@@ -71,19 +71,19 @@ namespace Gyman.PresentationLayer.ViewModels
         {
             var viewModelId = args.Id;
             var viewModelName = args.ViewModelName;
-            var detailViewModel = GetDetailViewModel(viewModelId, viewModelName);
+            var tabViewModel = GetTabViewModel(viewModelId, viewModelName);
 
-            if (detailViewModel == null)
+            if (tabViewModel == null)
             {
-                detailViewModel = detailViewModelCreator[viewModelName];
+                tabViewModel = tabViewModelCreator[viewModelName];
 
-                if (await TryLoadDetailViewModelAsync(viewModelId, detailViewModel))
+                if (await TryLoadTabViewModelAsync(viewModelId, tabViewModel))
                 {
-                    DetailViewModels.Add(detailViewModel);
+                    TabViewModels.Add(tabViewModel);
                 }
             }
 
-            SelectedDetailViewModel = detailViewModel;
+            SelectedTabViewModel = tabViewModel;
         }
 
         private void OnDetailViewClosed(DetailViewClosedEventArgs args)
@@ -98,10 +98,10 @@ namespace Gyman.PresentationLayer.ViewModels
 
         private void RegisterCommands()
         {
-            CreateNewDetailViewCommand = new DelegateCommand<Type>(OnCreateNewDetailView);
+            CreateNewTabViewCommand = new DelegateCommand<Type>(OnCreateNewTabView);
         }
 
-        private void OnCreateNewDetailView(Type viewModelType)
+        private void OnCreateNewTabView(Type viewModelType)
         {
             OnDetailViewOpened(
                 new DetailViewOpenedEventArgs
@@ -113,28 +113,28 @@ namespace Gyman.PresentationLayer.ViewModels
 
         private void RemoveDetailViewModel(int id, string viewModelName)
         {
-            var detailViewModel = DetailViewModels.SingleOrDefault(
+            var detailViewModel = TabViewModels.SingleOrDefault(
                             vm => vm.Id == id &&
                             vm.GetType().Name == viewModelName);
 
             if (detailViewModel != null)
             {
-                DetailViewModels.Remove(detailViewModel);
+                TabViewModels.Remove(detailViewModel);
             }
         }
 
-        private IDetailViewModel GetDetailViewModel(int id, string name)
+        private ITabViewModel GetTabViewModel(int id, string name)
         {
-            return DetailViewModels.FirstOrDefault(
+            return TabViewModels.FirstOrDefault(
                 vm => vm.Id == id && vm.GetType().Name == name);
         }
 
-        private async Task<bool> TryLoadDetailViewModelAsync(
-            int id, IDetailViewModel detailViewModel)
+        private async Task<bool> TryLoadTabViewModelAsync(
+            int id, ITabViewModel tabViewModel)
         {
             try
             {
-                await detailViewModel.LoadAsync(id);
+                await tabViewModel.LoadAsync(id);
 
                 return true;
             }

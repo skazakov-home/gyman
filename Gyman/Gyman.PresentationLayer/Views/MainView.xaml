@@ -28,15 +28,19 @@
               FontSize="16">
             <MenuItem Header="Добавить">
                 <MenuItem Header="Нового клиента"
-                          Command="{Binding CreateNewDetailViewCommand}"
+                          Command="{Binding CreateNewTabViewCommand}"
                           CommandParameter="{x:Type vm:MemberDetailViewModel}"/>
                 <MenuItem Header="Нового тренера"
-                          Command="{Binding CreateNewDetailViewCommand}"
+                          Command="{Binding CreateNewTabViewCommand}"
                           CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
             </MenuItem>
             <MenuItem Header="Показать">
-                <MenuItem Header="Всех клиентов"/>
-                <MenuItem Header="Всех тренеров"/>
+                <MenuItem Header="Всех клиентов"
+                          Command="{Binding CreateNewTabViewCommand}"
+                          CommandParameter="{x:Type vm:MembersViewModel}"/>
+                <MenuItem Header="Всех тренеров"
+                          Command="{Binding CreateNewTabViewCommand}"
+                          CommandParameter="{x:Type vm:TrainersViewModel}"/>
                 <MenuItem Header="Расписание"/>
             </MenuItem>
         </Menu>
@@ -47,9 +51,9 @@
 
         <TabControl Grid.Column="1"
                     Grid.Row="1"
-                    ItemsSource="{Binding DetailViewModels}"
-                    SelectedItem="{Binding SelectedDetailViewModel, Mode=TwoWay}"
-                    ItemTemplate="{StaticResource DetailViewItemTemplate}"
-                    ItemContainerStyle="{StaticResource DetailViewItemContainerStyle}"/>
+                    ItemsSource="{Binding TabViewModels}"
+                    SelectedItem="{Binding SelectedTabViewModel, Mode=TwoWay}"
+                    ItemTemplate="{StaticResource TabViewItemTemplate}"
+                    ItemContainerStyle="{StaticResource TabViewItemContainerStyle}"/>
     </Grid>
 </mah:MetroWindow>

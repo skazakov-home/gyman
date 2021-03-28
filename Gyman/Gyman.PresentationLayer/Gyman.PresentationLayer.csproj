@@ -134,22 +134,29 @@
     <Compile Include="Events\DetailViewSavedEvent.cs" />
     <Compile Include="Events\DetailViewSavedEventArgs.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
-    <Compile Include="ViewModels\DetailViewModelBase.cs" />
-    <Compile Include="ViewModels\IDetailViewModel.cs" />
+    <Compile Include="ViewModels\ITrainersViewModel.cs" />
+    <Compile Include="ViewModels\TabViewModelBase.cs" />
     <Compile Include="ViewModels\IMemberDetailViewModel.cs" />
+    <Compile Include="ViewModels\IMembersViewModel.cs" />
     <Compile Include="ViewModels\INavigationViewModel.cs" />
+    <Compile Include="ViewModels\ITabViewModel.cs" />
     <Compile Include="ViewModels\ITrainerDetailViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MemberDetailViewModel.cs" />
+    <Compile Include="ViewModels\MembersViewModel.cs" />
     <Compile Include="ViewModels\NavigationItemViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\TrainerDetailViewModel.cs" />
+    <Compile Include="ViewModels\TrainersViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MemberDetailView.xaml.cs">
       <DependentUpon>MemberDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MembersView.xaml.cs">
+      <DependentUpon>MembersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NavigationView.xaml.cs">
       <DependentUpon>NavigationView.xaml</DependentUpon>
@@ -158,6 +165,9 @@
     <Compile Include="Views\Services\IDialogMessageService.cs" />
     <Compile Include="Views\TrainerDetailView.xaml.cs">
       <DependentUpon>TrainerDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TrainersView.xaml.cs">
+      <DependentUpon>TrainersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Wrappers\MemberWrapper.cs" />
     <Compile Include="Wrappers\ModelWrapper.cs" />
@@ -212,11 +222,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\MembersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\NavigationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TrainerDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrainersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

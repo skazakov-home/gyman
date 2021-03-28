@@ -11,7 +11,7 @@ namespace Gyman.PresentationLayer.Wrappers
 
         public int Id => Model.Id;
 
-        public bool HasSubscription => Model.Subscription != null;
+        public bool HasSubscription => Model.SubscriptionId != null;
 
         public string Name
         {
