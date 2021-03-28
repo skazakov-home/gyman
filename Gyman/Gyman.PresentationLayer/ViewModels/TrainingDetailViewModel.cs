@@ -1,7 +1,9 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using Gyman.BusinessLogicLayer;
 using Gyman.PresentationLayer.Data.Repositories;
+using Gyman.PresentationLayer.Data.Services;
 using Gyman.PresentationLayer.Views.Services;
 using Gyman.PresentationLayer.Wrappers;
 using Prism.Commands;
@@ -12,16 +14,23 @@ namespace Gyman.PresentationLayer.ViewModels
     public class TrainingDetailViewModel : TabViewModelBase, ITrainingDetailViewModel
     {
         private readonly ITrainingRepository trainingRepository;
-
+        private readonly IMemberLookupDataService memberLookupDataService;
+        private readonly ITrainerLookupDataService trainerLookupDataService;
         private TrainingWrapper training;
 
         public TrainingDetailViewModel(
             IEventAggregator eventAggregator,
             IDialogMessageService dialogMessageService,
-            ITrainingRepository trainingRepository)
+            ITrainingRepository trainingRepository,
+            IMemberLookupDataService memberLookupDataService,
+            ITrainerLookupDataService trainerLookupDataService)
             : base(eventAggregator, dialogMessageService)
         {
             this.trainingRepository = trainingRepository;
+            this.memberLookupDataService = memberLookupDataService;
+            this.trainerLookupDataService = trainerLookupDataService;
+            Members = new ObservableCollection<LookupItem>();
+            Trainers = new ObservableCollection<LookupItem>();
         }
 
         public TrainingWrapper Training
@@ -34,6 +43,10 @@ namespace Gyman.PresentationLayer.ViewModels
             }
         }
 
+        public ObservableCollection<LookupItem> Members { get; }
+
+        public ObservableCollection<LookupItem> Trainers { get; }
+
         public override async Task LoadAsync(int trainingId)
         {
             var training = trainingId > 0
@@ -42,6 +55,32 @@ namespace Gyman.PresentationLayer.ViewModels
 
             Id = trainingId;
             WrapTraining(training);
+            await LoadMemberLookupItemsAsync();
+            await LoadTrainerLookupItemsAsync();
+        }
+
+        private async Task LoadMemberLookupItemsAsync()
+        {
+            Members.Clear();
+            Members.Add(new NullLookupItem { DisplayMember = "Нет клиента" });
+            var lookupItems = await memberLookupDataService.LoadMemberLookupItemsAsync();
+
+            foreach (var item in lookupItems)
+            {
+                Members.Add(item);
+            }
+        }
+
+        private async Task LoadTrainerLookupItemsAsync()
+        {
+            Trainers.Clear();
+            Trainers.Add(new NullLookupItem { DisplayMember = "Нет тренера" });
+            var lookupItems = await trainerLookupDataService.LoadTrainerLookupItemsAsync();
+
+            foreach (var item in lookupItems)
+            {
+                Trainers.Add(item);
+            }
         }
 
         protected override bool CanSave()
@@ -69,14 +108,9 @@ namespace Gyman.PresentationLayer.ViewModels
 
         protected override async void OnSave()
         {
-            await SaveWithOptimisticConcurrencyAsync(
-                trainingRepository.SaveAsync,
-                () =>
-                {
-                    HasChanges = trainingRepository.HasChanges();
-                    Id = Training.Id;
-                    RaiseDetailViewSavedEvent(Training.Id, $"{Training.Id}");
-                });
+            await trainingRepository.SaveAsync();
+            HasChanges = trainingRepository.HasChanges();
+            Id = Training.Id;
         }
 
         private Training CreateNewTraining()

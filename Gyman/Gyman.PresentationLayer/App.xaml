@@ -27,6 +27,11 @@
                         <Setter Property="FontSize" Value="14"/>
                         <Setter Property="Foreground" Value="DarkGray"/>
                     </Style>
+                    
+                    <!-- ComboBox Style -->
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox}">
+                        <Setter Property="FontSize" Value="16"/>
+                    </Style>
 
                     <!-- Member Detail View Template -->
                     <DataTemplate DataType="{x:Type vm:MemberDetailViewModel}">
