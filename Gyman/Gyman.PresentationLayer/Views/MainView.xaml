@@ -35,7 +35,7 @@
                           CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
                 <MenuItem Header="Тренировку"
                           Command="{Binding CreateNewTabViewCommand}"
-                          CommandParameter="{x:Type vm:TrainerDetailViewModel}"/>
+                          CommandParameter="{x:Type vm:TrainingDetailViewModel}"/>
             </MenuItem>
             <MenuItem Header="Показать">
                 <MenuItem Header="Всех клиентов"

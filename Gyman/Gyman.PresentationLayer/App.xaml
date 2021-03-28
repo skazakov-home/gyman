@@ -37,6 +37,11 @@
                         <v:TrainerDetailView/>
                     </DataTemplate>
 
+                    <!-- Training Detail View Template -->
+                    <DataTemplate DataType="{x:Type vm:TrainingDetailViewModel}">
+                        <v:TrainingDetailView/>
+                    </DataTemplate>
+
                     <!-- Subscription Detail View Template -->
                     <DataTemplate DataType="{x:Type vm:SubscriptionDetailViewModel}">
                         <v:SubscriptionDetailView/>
