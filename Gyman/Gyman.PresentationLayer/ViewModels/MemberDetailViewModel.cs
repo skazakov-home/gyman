@@ -110,7 +110,7 @@ namespace Gyman.PresentationLayer.ViewModels
         private async Task LoadSubscriptionLookupItemsAsync()
         {
             Subscriptions.Clear();
-            Subscriptions.Add(new NullLookupItem { DisplayMember = "" });
+            Subscriptions.Add(new NullLookupItem { DisplayMember = "Нет абонемента" });
             var lookupItems = await subscriptionLookupDataService.LoadSubscriptionLookupItemsAsync();
 
             foreach (var item in lookupItems)
