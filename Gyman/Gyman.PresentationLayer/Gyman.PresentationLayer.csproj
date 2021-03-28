@@ -180,6 +180,9 @@
     <Compile Include="Views\TrainersView.xaml.cs">
       <DependentUpon>TrainersView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TrainingDetailView.xaml.cs">
+      <DependentUpon>TrainingDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Wrappers\MemberWrapper.cs" />
     <Compile Include="Wrappers\ModelWrapper.cs" />
     <Compile Include="Wrappers\NotifyDataErrorInfoBase.cs" />
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\TrainersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TrainingDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
