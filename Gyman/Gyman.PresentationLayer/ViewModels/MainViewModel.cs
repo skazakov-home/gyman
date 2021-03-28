@@ -27,8 +27,9 @@ namespace Gyman.PresentationLayer.ViewModels
         {
             this.eventAggregator = eventAggregator;
             this.dialogMessageService = dialogMessageService;
-            NavigationViewModel = navigationViewModel;
             this.detailViewModelCreator = detailViewModelCreator;
+
+            NavigationViewModel = navigationViewModel;
             DetailViewModels = new ObservableCollection<IDetailViewModel>();
 
             SubscribeEvents();

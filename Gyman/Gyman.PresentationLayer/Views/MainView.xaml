@@ -9,8 +9,8 @@
                  mc:Ignorable="d"
                  Title="GYMAN"
                  WindowStartupLocation="CenterScreen"
-                 Height="480"
-                 Width="768"
+                 Height="576"
+                 Width="960"
                  SnapsToDevicePixels="True">
     <Grid Margin="2">
         <Grid.ColumnDefinitions>
